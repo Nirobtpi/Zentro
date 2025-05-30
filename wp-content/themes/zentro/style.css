@@ -1,0 +1,41 @@
+/**
+ * Theme Name:        Zentro
+ * Theme URI:         https://example.com/
+ * Description:       Zentro is a clean, minimal, and modern blog theme designed for writers, creators, and professionals who value simplicity and clarity. Fully responsive and lightweight, Zentro offers a seamless reading experience across all devices. With intuitive customization options, it's easy to personalize your blog and showcase your content in style.
+ * Version:           1.0.0
+ * Author:            Nirob
+ * Author URI:        https://example.com
+ * Tags:              blog, minimal, modern, responsive
+ * Text Domain:       zentro
+ * Tested up to:      5.4
+ * Requires at least: 5.0
+ * Requires PHP:      7.4
+ * License:           GNU General Public License v2.0 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Copyright: (c) 2025 Zentro. All rights reserved.
+
+*/
+.screen-reader-text{
+    display: none;
+}
+.btn-search{
+    cursor: pointer;
+}
+.page-numbers {
+	padding: 10px 16px;
+	background: #f9ca27;
+	font-size: 14px;
+    transition: 0.3s all easy;
+}
+.page-numbers:hover{
+    background: #ccc;
+    color: #000 !important;
+}
+.sidebar .blog-list-widget img {
+
+	height: 65px;
+}
+.sidebar .blog-list-widget .mb-1 {
+    font-size: 13px;
+}
+
