@@ -74,13 +74,15 @@
         <h2 class="widget-title">Popular Categories</h2>
         <div class="link-widget">
             <ul>
-                <li><a href="#">Marketing <span>(21)</span></a></li>
-                <li><a href="#">SEO Service <span>(15)</span></a></li>
-                <li><a href="#">Digital Agency <span>(31)</span></a></li>
-                <li><a href="#">Make Money <span>(22)</span></a></li>
-                <li><a href="#">Blogging <span>(66)</span></a></li>
-                <li><a href="#">Entertaintment <span>(11)</span></a></li>
-                <li><a href="#">Video Tuts <span>(87)</span></a></li>
+                <?php
+                $categories=get_categories(get_the_ID());
+                if ( !empty($categories) && !is_wp_error($categories) ) {
+                    foreach ( $categories as $category ) {
+                        echo '<li><a href="' . esc_url(get_category_link($category->term_id)) . '">'
+                            . esc_html($category->name) . ' <span>(' . esc_html($category->count) . ')</span></a></li>';
+                    }
+                }
+                ?>
             </ul>
         </div><!-- end link-widget -->
     </div><!-- end widget -->
