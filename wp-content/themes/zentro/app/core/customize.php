@@ -3,6 +3,67 @@ if(!function_exists('zentro_customize_register')) {
       
 
     function zentro_customize_register( $wp_customize ) {
+
+        // logo chnage 
+        $wp_customize->add_section('header',array(
+            'title'=>__('Header Section','zentro'),
+            'priority'=>10,
+        ));
+
+        $wp_customize->add_setting('header-logo-setting',array(
+            'default'=> ZENTRO_THEME_URI.'assets/images/mylogo.png',
+            'transport'=>'postMessage',
+        ));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize,'header-logo-control',array(
+            'label'=> __('Upload Logo','zentro'),
+            'section'=>'header',
+            'settings'=>'header-logo-setting',
+
+        )));
+        $wp_customize->selective_refresh->add_partial('header-logo-selective',array(
+            'selector'=>'#logo',
+            'section'=>'header',
+            'settings'=> array('header-logo-setting'),
+           'render_callback' => function() {
+            return '<img src="' . esc_url(get_theme_mod('header-logo-setting')) . '" alt="Image">';
+            }
+        ));
+        // logo end 
+
+        // search form option 
+        $wp_customize->add_setting('search-btn-text-setting',array(
+            'default'=> __('Search','zentro'),
+            'transport'=>'postMessage',
+        ));
+        $wp_customize->add_control('search-btn-text-control',array(
+            'type'=>'text',
+            'label'=> __('Add Search Button Text','zentro'),
+            'section'=>'header',
+            'settings'=> 'search-btn-text-setting',
+        ));
+        $wp_customize->selective_refresh->add_partial('search-btn-text-selective',array(
+            'selector'=>'.btn-text',
+            'section'=>'header',
+            'settings'=> array('search-btn-text-setting'),
+            'render_callback' => function() {
+                return esc_html( get_theme_mod('search-btn-text-setting'));
+            }
+        ));
+
+        $wp_customize->add_setting('placeholder-text-setting',array(
+            'default'=> __('Search...','zentro'),
+            'transport'=>'postMessage',
+        ));
+        $wp_customize->add_control('search-placeholder-control', array(
+            'type' => 'text',
+            'label' => __('Search Input Placeholder', 'zentro'),
+            'section' => 'header',
+            'settings' => 'placeholder-text-setting',
+        ));
+        // end form settings 
+
+
+        // sidebar settings 
         $wp_customize->add_section('add-image',array(
             'title'=> __('Sidebar Settings','zentro'),
             'description'=>__('Add Advertise Image','zentro'),
@@ -55,8 +116,10 @@ if(!function_exists('zentro_customize_register')) {
 
     add_action( 'customize_register', 'zentro_customize_register' );
 
+
+    // enquee js file 
     function zentro_customize_preview_js() {
-        wp_enqueue_script('zentro-customizer', ZENTRO_THEME_URI . '/js/customize-preview.js', array('customize-preview'), null, true);
+        wp_enqueue_script('zentro-customizer', ZENTRO_THEME_URI . 'assets/js/customize-preview.js', array('customize-preview'), null, true);
     }
     add_action('customize_preview_init', 'zentro_customize_preview_js');
 }

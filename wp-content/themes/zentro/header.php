@@ -32,7 +32,13 @@
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="marketing-index.html"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/mylogo.png" alt=""></a>
+                    <a class="navbar-brand" id="logo" href="<?php echo esc_url(home_url('/')); ?>">
+                        <?php if(get_theme_mod('header-logo-setting') == '') : ?>
+                        <img src="<?php echo esc_url(ZENTRO_THEME_URI) ?>/assets/images/mylogo.png" alt="logo">
+                        <?php else : ?>
+                        <img src="<?php echo esc_url(get_theme_mod('header-logo-setting')); ?>" alt="logo">
+                        <?php endif; ?>
+                    </a>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <?php
                          wp_nav_menu([
