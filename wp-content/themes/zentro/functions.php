@@ -47,4 +47,8 @@ require_once ZENTRO_THEME_DIR .'/app/core/register-sidebar.php';
 
 // popular post widget
 require_once ZENTRO_THEME_DIR .'/app/core/widgets/popular-post-widget.php';
+require_once ZENTRO_THEME_DIR .'/app/core/widgets/category-widget.php';
+
+// customize add
+require_once ZENTRO_THEME_DIR .'/app/core/customize.php';
 ?>

@@ -31,7 +31,7 @@ if(!function_exists('zentro_theme_support')){
             'flex-width'  => true,
         ]);
         // support html
-        add_theme_support('html',[
+        add_theme_support('html5',[
             'comment-list',
 			'comment-form',
 			'search-form',

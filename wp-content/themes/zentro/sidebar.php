@@ -1,89 +1,29 @@
 <div class="sidebar">
-<?php dynamic_sidebar('popular-post-sidebar') ?>
-    <div class="widget">  
-        <h2 class="widget-title">Recent Posts</h2>
-        <div class="blog-list-widget">
-            <div class="list-group">
-                <a href="marketing-single.html"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 justify-content-between">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_07.jpg" alt=""
-                            class="img-fluid float-left">
-                        <h5 class="mb-1">5 Beautiful buildings you need to before dying</h5>
-                        <small>12 Jan, 2016</small>
-                    </div>
-                </a>
-
-                <a href="marketing-single.html"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 justify-content-between">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_08.jpg" alt=""
-                            class="img-fluid float-left">
-                        <h5 class="mb-1">Let's make an introduction for creative life</h5>
-                        <small>11 Jan, 2016</small>
-                    </div>
-                </a>
-
-                <a href="marketing-single.html"
-                    class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="w-100 last-item justify-content-between">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_09.jpg" alt=""
-                            class="img-fluid float-left">
-                        <h5 class="mb-1">Did you see the most beautiful sea in the world?</h5>
-                        <small>07 Jan, 2016</small>
-                    </div>
-                </a>
-            </div>
-        </div><!-- end blog-list -->
-    </div><!-- end widget -->
+<?php if(is_active_sidebar('popular-post-sidebar')) : ?>
+<?php dynamic_sidebar('popular-post-sidebar'); ?>
+<?php endif; ?>
 
     <div id="" class="widget">
-        <h2 class="widget-title">Advertising</h2>
+        <h2 class="widget-title" id="add-image-title"><?php echo get_theme_mod('add-image-title'); ?></h2>
         <div class="banner-spot clearfix">
-            <div class="banner-img">
+            <div class="banner-img" id="ads-image">
+                <?php if(get_theme_mod('add-image-setting')==''): ?>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/upload/banner_03.jpg" alt=""
                     class="img-fluid">
+                <?php else: ?>
+                    <img src="<?php echo esc_url(get_theme_mod('add-image-setting'))?>" alt=""
+                    class="img-fluid">
+                <?php endif; ?>
             </div><!-- end banner-img -->
         </div><!-- end banner -->
     </div><!-- end widget -->
-
-    <div class="widget">
-        <h2 class="widget-title">Instagram Feed</h2>
-        <div class="instagram-wrapper clearfix">
-            <a class="" href="#"><img src="upload/small_09.jpg" alt="" class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_01.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_02.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_03.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_04.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_05.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_06.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_07.jpg" alt=""
-                    class="img-fluid"></a>
-            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/upload/small_08.jpg" alt=""
-                    class="img-fluid"></a>
-        </div><!-- end Instagram wrapper -->
-    </div><!-- end widget -->
-
-    <div class="widget">
-        <h2 class="widget-title">Popular Categories</h2>
-        <div class="link-widget">
-            <ul>
-                <?php
-                $categories=get_categories(get_the_ID());
-                if ( !empty($categories) && !is_wp_error($categories) ) {
-                    foreach ( $categories as $category ) {
-                        echo '<li><a href="' . esc_url(get_category_link($category->term_id)) . '">'
-                            . esc_html($category->name) . ' <span>(' . esc_html($category->count) . ')</span></a></li>';
-                    }
-                }
-                ?>
-            </ul>
-        </div><!-- end link-widget -->
+    
+    <!-- category sidebar  -->
+    <?php if(is_active_sidebar('category-sidebar')): ?>
+    
+    <?php dynamic_sidebar('category-sidebar'); ?>
+    
+    <?php endif; ?>
+    
     </div><!-- end widget -->
 </div><!-- end sidebar -->
